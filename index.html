@@ -12,7 +12,7 @@
     <script defer src="./scripts/app.js" charset="utf-8"></script>
   </head>
   <body>
-    <div id="welcome-page" >
+    <div id="welcome-page" class="hidden">
       <div id="top-part-welcome">
         <img
           class="sw-logo"
@@ -66,9 +66,9 @@
         <div id="controls-wrapper">
           <p id="score-display">Score<span>6000</span></p>
           
-          <p id="lives-display">Lives<Span>❤️❤️❤️</Span></p>
+          <p >Lives<Span id="lives-display"></Span></p>
           <p id="highscore-display">High-score<span>6000</span></p>
-          <button id="start-gane">
+          <button id="start-game">
             Click here to Start game
           </button>
         </div>
@@ -78,7 +78,7 @@
         </div>
       </div>
     </div>
-    <div id="result-page" >
+    <div id="result-page" class="hidden">
       <div id="top-part-game-over" >
         <img
           class="sw-logo"

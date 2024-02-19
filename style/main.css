@@ -200,20 +200,62 @@ span {
     height: 800px;
     width: 800px;
     padding: 20px;
-    background-color: #000
+    background-color: #000;
 }
 
 .grid div {
     border-radius: 50px;
-    box-shadow: 0 0 20px 0 #FFE81F;
     flex-grow: 1;
     height: 10%;
     width: 10%;
 }
 
+.grid div.playerShip {
+    background-image: url('../images/luke_ship.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    cursor: pointer;
+}
 
+.grid div.phasma {
+    background-image: url('../images/Phasma.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    cursor: pointer;
+    background-position: center;
+}
 
+.grid div.palp {
+    background-image: url('../images/palpatine.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    cursor: pointer;
+    background-position: center;
+}
 
+.grid div.vader {
+    background-image: url('../images/vader.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    cursor: pointer;
+    background-position: center;
+}
+
+.grid div.ren {
+    background-image: url('../images/ren.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    cursor: pointer;
+    background-position: center;
+}
+
+.grid div.chewy {
+    background-image: url('../images/chewy.png     ');
+    background-repeat: no-repeat;
+    background-size: contain;
+    cursor: pointer;
+    background-position: center;
+}
 
 
 
