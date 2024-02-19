@@ -4,10 +4,115 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Space Invader - Star Wars</title>
+    <link
+      href="https://fonts.cdnfonts.com/css/star-wars?styles=139840"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="./style/main.css" />
     <script defer src="./scripts/app.js" charset="utf-8"></script>
   </head>
   <body>
+    <div id="welcome-page" >
+      <div id="top-part-welcome">
+        <img
+          class="sw-logo"
+          src="./images/star_wars.png"
+          alt="star wars logo"
+        />
+        <h1>Welcome to<br />Star Wars invader</h1>
+        <img
+          class="sw-logo"
+          src="./images/star_wars.png"
+          alt="star wars logo"
+        />
+      </div>
+      <div>
+        <div id="character-page">
+          <div id="republic">
+            <h2>The Republic</h2>
+            <img id="ren" src="./images/ren.png" alt="" />
+            <img id="phasma" src="./images/Phasma.png" alt="" />
+            <img id="vader" src="./images//vader.png" alt="" />
+          </div>
+          <div id="deco">
+            <h2>Pick your character</h2>
+            <img id="destroyer" src="./images/star_destroyer.png" alt="" />
+            <img id="falcon" src="./images/falcon_millenium.png" alt="" />
+          </div>
+          <div id="rebelion">
+            <h2>The Rebelion</h2>
+            <img id="chewy" src="./images/chewy.png" alt="" />
+            <img id="solo" src="./images/solo.png" alt="" />
+            <img id="luke" src="./images/luke.png" alt="" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="game-page" >
+      <div id="top-part-ingame">
+        <img
+          class="sw-logo"
+          src="./images/star_wars.png"
+          alt="star wars logo"
+        />
+        <h1>may the force be with you</h1>
+        <img
+          class="sw-logo"
+          src="./images/star_wars.png"
+          alt="star wars logo"
+        />
+      </div>
+      <div id="main-part">
+        <div id="controls-wrapper">
+          <p id="score-display">Score<span>6000</span></p>
+          
+          <p id="lives-display">Lives<Span>❤️❤️❤️</Span></p>
+          <p id="highscore-display">High-score<span>6000</span></p>
+          <button id="start-gane">
+            Click here to Start game
+          </button>
+        </div>
+        
+        <div id="grid-wrapper">
+          <div class="grid"></div>
+        </div>
+      </div>
+    </div>
+    <div id="result-page" >
+      <div id="top-part-game-over" >
+        <img
+          class="sw-logo"
+          src="./images/star_wars.png"
+          alt="star wars logo"
+        />
+        <h1>Game over!!!</h1>
+        <img
+          class="sw-logo"
+          src="./images/star_wars.png"
+          alt="star wars logo"
+        />
+      </div>
+      <div id="win" >
+        <h2>you won</h2>
+        <p>your score</p>
+        <p>6000</p>
+        <h4>May the force be with you!</h4>
+        <img src="./images/won.gif" alt="" />
+      </div>
+      <div id="loss" >
+        <h2>you lost</h2>
+        <p>your score</p>
+        <p>6000</p>
+        <h4>i find your lack of faith disturbing...</h4>
+        <img src="./images/loss.gif" alt="">
+      </div>
+      <div id="final-highscore">
+        <h3>High Score</h3>
+        <p><span>Flo 6000</span></p>
+        <p><span>Vane 6000</span></p>
+        <p></p>
+      </div>
+    </div>
     <!-- Have a div for every stage of the UI -->
     <!-- Have a div for every level -->
     <!-- Have different divs for every end of game depending a the side selected -->

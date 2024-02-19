@@ -1,8 +1,21 @@
 function init() {
-const body = document.querySelector()
-    body.textContent = "hello";
 
+const grid = document.querySelector(".grid");
 
+const width = 10; // width of a single row
+const CellsCount = width * width; //The number of cells in the grid(ten rows of ten)
+const cells = []; //how we store and reference the rows
+
+function createGrid() {
+  for (let i = 0; i < CellsCount; i++) {
+    const cell = document.createElement("div");
+    cell.innerText = i;
+    grid.appendChild(cell);
+    cells.push(cell);
+  }
+  addCat(catCurrentPosition);
+}
+ createGrid();
 
     // -----------PLAYER-----------
         // Players character array
