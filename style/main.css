@@ -6,7 +6,6 @@ body {
     height: 100vh;
     margin: 0 auto;
     font-family: 'Star Wars',sans-serif;
-    color: #FFE81F;
     background-color: #000;
 }
 
@@ -25,6 +24,7 @@ h1 {
 
 h2 {
     text-align: center;
+        color: #FFE81F;
 }
 
 
@@ -32,11 +32,13 @@ h3{
     text-align: center;
     font-size: 40px;
     margin: 10px;
+        color: #FFE81F;
 }
 
 h4 {
     font-size: 30px;
     margin: 10px
+        color: #FFE81F;
 }
 
 
@@ -135,7 +137,7 @@ span {
     color: #FFE81F;
     font-family: 'Star Wars',sans-serif;
     border-radius: 50px;
-    display: flex;
+ 
     flex-direction: column;
     justify-content: center;
     padding: 20px;
@@ -210,6 +212,21 @@ span {
     width: 10%;
 }
 
+#game-page button {
+    box-shadow: 0 0 100px 0 #FFE81F;
+    background-color: #000;
+    color: #FFE81F;
+    font-family: 'Star Wars', sans-serif;
+    border-radius: 50px;
+    justify-content: center;
+    padding: 50px;
+    height: 150px;
+    width: 150px;
+    align-items: center;
+    font-size: 15px;
+    line-height: 30px;
+}
+
 .grid div.playerShip {
     background-image: url('../images/luke_ship.png');
     background-repeat: no-repeat;
@@ -264,8 +281,21 @@ span {
     background-position: center;
 }
 
+.grid div.laser-red {
+    background-image: url('../images/laser-red.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    cursor: pointer;
+    background-position: center;
+}
 
-
+.grid div.laser-blue {
+    background-image: url('../images/laser-blue.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    cursor: pointer;
+    background-position: center;
+}
 
 /* game over styling */
 #top-part-game-over {
@@ -340,6 +370,7 @@ span {
 #reset-button  {
      margin: 100px 0 0 0;
 }
+
 
 
 .hidden {

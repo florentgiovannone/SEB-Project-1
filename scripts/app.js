@@ -12,6 +12,11 @@ function init() {
   const shootAudio = document.getElementById("shoot-audio");
   const solo = document.getElementById("solo");
 
+  const levelTwo = document.getElementById("level-two");
+  const levelThree = document.getElementById("level-three");
+  const bossLevel = document.getElementById("boss-level");
+  let intervalTime = 800;
+
   // Live display
   let lives = 5;
   const livesDisplay = document.querySelector("#lives-display");
@@ -30,22 +35,22 @@ function init() {
   let playerShipCurrentPosition = 90;
 
   // Enemy position and movement variable
-  const enemy = [
+  let enemy = [
     0, 1, 2, 3, 4, 5, 10, 11, 12, 13, 14, 15, 20, 21, 22, 23, 24, 25,
   ];
   const enemyRemoved = [];
   let isGoingRigth = true;
   let enemyDirection = 1;
-
+  let isPlaying = false;
   let timer = null;
 
   // Grid setup
   const width = 10; // width of a single row
-  const CellsCount = width * width; //The number of cells in the grid(ten rows of ten)
+  const cellsCount = width * width; //The number of cells in the grid(ten rows of ten)
   const cells = []; //how we store and reference the rows
 
   function createGrid() {
-    for (let i = 0; i < CellsCount; i++) {
+    for (let i = 0; i < cellsCount; i++) {
       const cell = document.createElement("div");
       cell.innerText = i;
       grid.appendChild(cell);
@@ -71,16 +76,16 @@ function init() {
     let currentLaserId = playerShipCurrentPosition;
 
     function shootLaser() {
-      cells[currentLaserId].classList.remove("chewy");
+      cells[currentLaserId].classList.remove("laser-blue");
       currentLaserId -= width;
-      cells[currentLaserId].classList.add("chewy");
+      cells[currentLaserId].classList.add("laser-blue");
 
       if (cells[currentLaserId].classList.contains("vader")) {
-        cells[currentLaserId].classList.remove("chewy");
+        cells[currentLaserId].classList.remove("laser-blue");
         cells[currentLaserId].classList.remove("vader");
         cells[currentLaserId].classList.add("boom");
 
-        setTimeout(() => cells[currentLaserId].classList.remove("boom"), 500);
+        setTimeout(() => cells[currentLaserId].classList.remove("boom"), 100);
         clearInterval(laserId);
 
         const oneEnemyRemoved = enemy.indexOf(currentLaserId);
@@ -89,11 +94,17 @@ function init() {
         scoreDisplay.innerHTML = score;
       }
     }
-
     if (event.keyCode === 32) {
-      laserId = setInterval(shootLaser, 500);
+      laserId = setInterval(shootLaser, 100);
+      setTimeout(() => {
+        cells[currentLaserId].classList.remove("laser-blue");
+        clearInterval(laserId);
+      }, 999);
       shootAudio.src = "../sounds/shoot.mp3";
       shootAudio.play();
+      if (cells[currentLaserId] === cells[0]) {
+        cells[currentLaserId].classList.remove("laser-blue");
+      }
     }
   }
 
@@ -167,36 +178,136 @@ function init() {
     }
   }
 
-  function checkIfLost() {
-    if (cells[playerShipCurrentPosition].classList.contains("vader")) {
-      console.log("end game");
-      endGame();
-      removeEnemy();
-    }
-  }
-
   // enemy mouvement
   function moveEnemy() {
     removeEnemy();
     enemyMouvement();
     displayEnemy();
-    checkIfLost();
   }
 
   // start Game function
   function startGameOne() {
-    timer = setInterval(() => moveEnemy(), 1000);
+    if (!isPlaying) {
+      isPlaying = !isPlaying;
+      timer = setInterval(() => {
+        moveEnemy();
+      }, 800);
+    }
+    if (enemyRemoved.length === 18) {
+      enemy = [
+        0, 1, 2, 3, 4, 5, 10, 11, 12, 13, 14, 15, 20, 21, 22, 23, 24, 25,
+      ];
+      enemyRemoved.length = 0;
+
+      isPlaying = false;
+      gameWonLevelOne();
+    }
+    if (enemy.some((item) => item >= width * width - width)) {
+      console.log("GAME OVER");
+      gameLost();
+      removeEnemy();
+      clearInterval(timer);
+    }
   }
 
-  function endGame() {
+  function startGameTwo() {
+    for (let i = 0; i < enemy.length; i++)
+      if (!isPlaying) {
+        isPlaying = !isPlaying;
+        timer = setInterval(() => {
+          moveEnemy();
+        }, 500);
+      }
+    if (enemyRemoved.length === 18) {
+      enemy = [
+        0, 1, 2, 3, 4, 5, 10, 11, 12, 13, 14, 15, 20, 21, 22, 23, 24, 25,
+      ];
+      enemyRemoved.length = 0;
+
+      isPlaying = false;
+      gameWonLevelTwo();
+    }
+    if (enemy.some((item) => item >= width * width - width)) {
+      console.log("GAME OVER");
+      gameLost();
+      removeEnemy();
+      clearInterval(timer);
+    }
+  }
+
+  function startGameThree() {
+    if (!isPlaying) {
+      isPlaying = !isPlaying;
+      timer = setInterval(() => {
+        moveEnemy();
+      }, 250);
+    }
+    if (enemyRemoved.length === 18) {
+      enemy = [
+        0, 1, 2, 3, 4, 5, 10, 11, 12, 13, 14, 15, 20, 21, 22, 23, 24, 25,
+      ];
+      enemyRemoved.length = 0;
+
+      isPlaying = false;
+      gameWonLevelThree();
+    }
+    if (enemy.some((item) => item >= width * width - width)) {
+      console.log("GAME OVER");
+      gameLost();
+      removeEnemy();
+      clearInterval(timer);
+    }
+  }
+
+  function gameWonLevelOne() {
+    clearInterval(timer);
+    if (!highScore || playerScore > highScore) {
+      localStorage.setItem("high-score", score);
+      highScoreSetUp();
+    }
+    startButton.classList.add("hidden");
+    levelTwo.classList.remove("hidden");
+    scoreDisplay.innerHTML = score;
+    scoreDisplayLoss.innerHTML = score;
+    scoreDisplayWin.innerHTML = score;
+  }
+  function gameWonLevelTwo() {
+    clearInterval(timer);
+    if (!highScore || playerScore > highScore) {
+      localStorage.setItem("high-score", score);
+      highScoreSetUp();
+    }
+    startButton.classList.add("hidden");
+    levelTwo.classList.add("hidden");
+    levelThree.classList.remove("hidden");
+    scoreDisplay.innerHTML = score;
+    scoreDisplayLoss.innerHTML = score;
+    scoreDisplayWin.innerHTML = score;
+  }
+
+  function gameWonLevelThree() {
+    clearInterval(timer);
+
+    if (!highScore || playerScore > highScore) {
+      localStorage.setItem("high-score", score);
+      highScoreSetUp();
+    }
+    gamePage.classList.add("hidden");
+    resultPage.classList.remove("hidden");
+    lostPage.classList.add("hidden");
+    scoreDisplay.innerHTML = score;
+    scoreDisplayLoss.innerHTML = score;
+    scoreDisplayWin.innerHTML = score;
+  }
+
+  function gameLost() {
     clearInterval(timer);
     removeEnemy();
 
     if (!highScore || playerScore > highScore) {
       localStorage.setItem("high-score", score);
-      highScoreSetUp()
+      highScoreSetUp();
     }
-
     gamePage.classList.add("hidden");
     resultPage.classList.remove("hidden");
     winPage.classList.add("hidden");
@@ -216,7 +327,7 @@ function init() {
   function playAgain() {
     welcomePage.classList.remove("hidden");
     resultPage.classList.add("hidden");
-    window.location.reload()
+    window.location.reload();
   }
 
   function playAudio() {
@@ -232,6 +343,9 @@ function init() {
   document.addEventListener("keydown", handleKeyDown);
   document.addEventListener("keydown", shoot);
   startButton.addEventListener("click", startGameOne);
+  levelTwo.addEventListener("click", startGameTwo);
+  levelThree.addEventListener("click", startGameThree);
+  // bossLevel.addEventListener("click", startGameThree);
 }
 // -----------PLAYER-----------
 // Players character array
