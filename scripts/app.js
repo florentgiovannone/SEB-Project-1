@@ -1,23 +1,48 @@
 function init() {
-  const startButton = document.getElementById("start-game");
+  const startButton = document.querySelector("#start-game");
+  const playButtom = document.querySelector("#reset-button");
   const grid = document.querySelector(".grid");
+
+  const welcomePage = document.getElementById("welcome-page");
+  const gamePage = document.getElementById("game-page");
+  const resultPage = document.getElementById("result-page");
+  const winPage = document.getElementById("win");
+  const lostPage = document.getElementById("loss");
+  const starWarsAudio = document.getElementById("audio");
+  const shootAudio = document.getElementById("shoot-audio");
+  const solo = document.getElementById("solo");
+
+  // Live display
   let lives = 5;
   const livesDisplay = document.querySelector("#lives-display");
-  let playerShipCurrentPosition = 90;
-
   livesDisplay.innerHTML = lives ? "❤️".repeat(lives) : "☠️";
 
-  const width = 10; // width of a single row
-  const CellsCount = width * width; //The number of cells in the grid(ten rows of ten)
-  const cells = []; //how we store and reference the rows
+  // Score display
+  let score = 0;
+  const scoreDisplay = document.querySelector(".score-display");
+  const scoreDisplayLoss = document.querySelector(".score-display-loss");
+  const scoreDisplayWin = document.querySelector(".score-display-win");
 
+  // High score display
+  let highScore = 0;
+
+  // player position
+  let playerShipCurrentPosition = 90;
+
+  // Enemy position and movement variable
   const enemy = [
     0, 1, 2, 3, 4, 5, 10, 11, 12, 13, 14, 15, 20, 21, 22, 23, 24, 25,
   ];
   const enemyRemoved = [];
-  let enemyId;
   let isGoingRigth = true;
   let enemyDirection = 1;
+
+  let timer = null;
+
+  // Grid setup
+  const width = 10; // width of a single row
+  const CellsCount = width * width; //The number of cells in the grid(ten rows of ten)
+  const cells = []; //how we store and reference the rows
 
   function createGrid() {
     for (let i = 0; i < CellsCount; i++) {
@@ -30,28 +55,49 @@ function init() {
   }
   createGrid();
 
+  // Adding class to player
   function addPlayerShip(position) {
     cells[position].classList.add("playerShip");
   }
 
+  // removing class to player
   function removePlayerShip(position) {
     cells[position].classList.remove("playerShip");
   }
 
+  // Player shoot function
   function shoot(event) {
-    currentLAserId = playerShipCurrentPosition;
+    let laserId;
+    let currentLaserId = playerShipCurrentPosition;
 
     function shootLaser() {
-      cells[currentLAserId].classList.remove("chewy");
-      currentLAserId -= width;
-      cells[currentLAserId].classList.add("chewy");
+      cells[currentLaserId].classList.remove("chewy");
+      currentLaserId -= width;
+      cells[currentLaserId].classList.add("chewy");
+
+      if (cells[currentLaserId].classList.contains("vader")) {
+        cells[currentLaserId].classList.remove("chewy");
+        cells[currentLaserId].classList.remove("vader");
+        cells[currentLaserId].classList.add("boom");
+
+        setTimeout(() => cells[currentLaserId].classList.remove("boom"), 500);
+        clearInterval(laserId);
+
+        const oneEnemyRemoved = enemy.indexOf(currentLaserId);
+        enemyRemoved.push(oneEnemyRemoved);
+        score += 100;
+        scoreDisplay.innerHTML = score;
+      }
     }
+
     if (event.keyCode === 32) {
-      setInterval(shootLaser, 500);
+      laserId = setInterval(shootLaser, 500);
+      shootAudio.src = "../sounds/shoot.mp3";
+      shootAudio.play();
     }
   }
 
-  //   move player ship
+  // player movement
   function handleKeyDown(event) {
     removePlayerShip(playerShipCurrentPosition);
     // left is 37
@@ -62,7 +108,7 @@ function init() {
     } else if (event.keyCode === 38 && playerShipCurrentPosition >= width) {
       playerShipCurrentPosition = playerShipCurrentPosition;
 
-      //  up is 39
+      //  right is 39
     } else if (
       event.keyCode === 39 &&
       playerShipCurrentPosition % width !== width - 1
@@ -80,6 +126,7 @@ function init() {
     addPlayerShip(playerShipCurrentPosition);
   }
 
+  // Adding clas to enemy to appear
   function displayEnemy() {
     for (let i = 0; i < enemy.length; i++) {
       if (!enemyRemoved.includes(i)) {
@@ -87,12 +134,17 @@ function init() {
       }
     }
   }
-  displayEnemy();
 
-  function moveEnemy() {
+  // rmoving clas to enemy to disapear and move
+  function removeEnemy() {
+    for (let i = 0; i < enemy.length; i++) {
+      cells[enemy[i]].classList.remove("vader");
+    }
+  }
+
+  function enemyMouvement() {
     const leftBorder = enemy[0] % width === 0;
     const rightBorder = enemy[enemy.length - 1] % width === width - 1;
-    removeEnemy();
 
     if (rightBorder && isGoingRigth) {
       for (let i = 0; i < enemy.length; i++) {
@@ -113,24 +165,73 @@ function init() {
     for (let i = 0; i < enemy.length; i++) {
       enemy[i] += enemyDirection;
     }
+  }
 
+  function checkIfLost() {
     if (cells[playerShipCurrentPosition].classList.contains("vader")) {
-      clearInterval(enemyId);
+      console.log("end game");
+      endGame();
+      removeEnemy();
     }
+  }
 
+  // enemy mouvement
+  function moveEnemy() {
+    removeEnemy();
+    enemyMouvement();
     displayEnemy();
+    checkIfLost();
   }
 
-  function removeEnemy() {
-    for (let i = 0; i < enemy.length; i++) {
-      cells[enemy[i]].classList.remove("vader");
+  // start Game function
+  function startGameOne() {
+    timer = setInterval(() => moveEnemy(), 1000);
+  }
+
+  function endGame() {
+    clearInterval(timer);
+    removeEnemy();
+
+    if (!highScore || playerScore > highScore) {
+      localStorage.setItem("high-score", score);
+      highScoreSetUp()
     }
+
+    gamePage.classList.add("hidden");
+    resultPage.classList.remove("hidden");
+    winPage.classList.add("hidden");
+    scoreDisplay.innerHTML = score;
+    scoreDisplayLoss.innerHTML = score;
+    scoreDisplayWin.innerHTML = score;
   }
 
-  enemyId = setInterval(() => moveEnemy(), 100);
+  function highScoreSetUp() {
+    const highScoreDisplay = document.querySelector("#highscore-display");
+    const highScoreDisplayFinal = document.querySelector("#highscore-final");
+    const highScoreStorage = localStorage.getItem("high-score");
+    highScoreDisplay.innerHTML = highScoreStorage;
+    highScoreDisplayFinal.innerHTML = highScoreStorage;
+  }
 
+  function playAgain() {
+    welcomePage.classList.remove("hidden");
+    resultPage.classList.add("hidden");
+    window.location.reload()
+  }
+
+  function playAudio() {
+    welcomePage.classList.add("hidden");
+    gamePage.classList.remove("hidden");
+    starWarsAudio.src = "../sounds/starwars.mp3";
+    starWarsAudio.play();
+    highScoreSetUp();
+  }
+
+  playButtom.addEventListener("click", playAgain);
+  solo.addEventListener("click", playAudio);
   document.addEventListener("keydown", handleKeyDown);
   document.addEventListener("keydown", shoot);
+  startButton.addEventListener("click", startGameOne);
 }
 // -----------PLAYER-----------
 // Players character array

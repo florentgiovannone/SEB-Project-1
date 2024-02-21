@@ -250,7 +250,14 @@ span {
 }
 
 .grid div.chewy {
-    background-image: url('../images/chewy.png     ');
+    background-image: url('../images/chewy.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    cursor: pointer;
+    background-position: center;
+}
+.grid div.boom {
+    background-image: url('../images/boom.gif');
     background-repeat: no-repeat;
     background-size: contain;
     cursor: pointer;
@@ -311,6 +318,29 @@ span {
     align-items: center;
     text-align: center;
 }
+
+#reset-button button {
+    border: 5px solid #FFE81F;
+    background-color: #000;
+    color: #FFE81F;
+    font-family: 'Star Wars', sans-serif;
+    border-radius: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+    height: 150px;
+    width: 350px;
+    align-items: center;
+    font-size: 15px;
+    line-height: 30px;
+    margin: auto;
+}
+
+#reset-button  {
+     margin: 100px 0 0 0;
+}
+
 
 .hidden {
     display: none;
