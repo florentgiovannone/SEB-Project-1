@@ -1,5 +1,7 @@
 function init() {
   const startButton = document.querySelector("#start-game");
+
+  // const toggleunmute = document.querySelector("#unmute");
   const playButtom = document.querySelector("#reset-button");
   const grid = document.querySelector(".grid");
 
@@ -11,11 +13,30 @@ function init() {
   const starWarsAudio = document.getElementById("audio");
   const shootAudio = document.getElementById("shoot-audio");
   const solo = document.getElementById("solo");
+  const chewy = document.getElementById("chewy");
+  const luke = document.getElementById("luke");
+  const ren = document.getElementById("ren");
+  const vader = document.getElementById("vader");
+  const phasma = document.getElementById("phasma");
+  const destroyer = document.getElementById("destroyer");
+  const falcon = document.getElementById("falcon");
+
+  const audioMute = document.getElementById("audio");
+  const audioShootMute = document.getElementById("shoot-audio");
+  const buttonMute = document.getElementById("mute");
+  const buttonUnmute = document.getElementById("unmute");
 
   const levelTwo = document.getElementById("level-two");
   const levelThree = document.getElementById("level-three");
   const bossLevel = document.getElementById("boss-level");
-  let intervalTime = 800;
+
+  let classPlayer = "";
+  let classLaserPlayer = "";
+  let classLaserEnemy = "";
+
+  let classEnemyOne = "";
+  let classEnemyTwo = "";
+  let classEnemyThree = "";
 
   // Live display
   let lives = 5;
@@ -58,16 +79,15 @@ function init() {
     }
     addPlayerShip(playerShipCurrentPosition);
   }
-  createGrid();
 
   // Adding class to player
   function addPlayerShip(position) {
-    cells[position].classList.add("playerShip");
+    cells[position].classList.add(classPlayer);
   }
 
   // removing class to player
   function removePlayerShip(position) {
-    cells[position].classList.remove("playerShip");
+    cells[position].classList.remove(classPlayer);
   }
 
   // Player shoot function
@@ -76,13 +96,13 @@ function init() {
     let currentLaserId = playerShipCurrentPosition;
 
     function shootLaser() {
-      cells[currentLaserId].classList.remove("laser-blue");
+      cells[currentLaserId].classList.remove(classLaserPlayer);
       currentLaserId -= width;
-      cells[currentLaserId].classList.add("laser-blue");
+      cells[currentLaserId].classList.add(classLaserPlayer);
 
-      if (cells[currentLaserId].classList.contains("vader")) {
-        cells[currentLaserId].classList.remove("laser-blue");
-        cells[currentLaserId].classList.remove("vader");
+      if (cells[currentLaserId].classList.contains(classEnemyOne)) {
+        cells[currentLaserId].classList.remove(classLaserPlayer);
+        cells[currentLaserId].classList.remove(classEnemyOne);
         cells[currentLaserId].classList.add("boom");
 
         setTimeout(() => cells[currentLaserId].classList.remove("boom"), 100);
@@ -95,15 +115,16 @@ function init() {
       }
     }
     if (event.keyCode === 32) {
+      console.log(classPlayer);
       laserId = setInterval(shootLaser, 100);
       setTimeout(() => {
-        cells[currentLaserId].classList.remove("laser-blue");
+        cells[currentLaserId].classList.remove(classLaserPlayer);
         clearInterval(laserId);
       }, 999);
       shootAudio.src = "../sounds/shoot.mp3";
       shootAudio.play();
       if (cells[currentLaserId] === cells[0]) {
-        cells[currentLaserId].classList.remove("laser-blue");
+        cells[currentLaserId].classList.remove(classLaserPlayer);
       }
     }
   }
@@ -141,7 +162,7 @@ function init() {
   function displayEnemy() {
     for (let i = 0; i < enemy.length; i++) {
       if (!enemyRemoved.includes(i)) {
-        cells[enemy[i]].classList.add("vader");
+        cells[enemy[i]].classList.add(classEnemyOne);
       }
     }
   }
@@ -149,7 +170,7 @@ function init() {
   // rmoving clas to enemy to disapear and move
   function removeEnemy() {
     for (let i = 0; i < enemy.length; i++) {
-      cells[enemy[i]].classList.remove("vader");
+      cells[enemy[i]].classList.remove(classEnemyOne);
     }
   }
 
@@ -183,79 +204,69 @@ function init() {
     removeEnemy();
     enemyMouvement();
     displayEnemy();
+    checkIfLost();
+  }
+
+  function checkIfLost() {
+    // Check if any enemy has reached the bottom of the grid
+    if (enemy.some((item) => item >= width * width - width)) {
+      console.log("GAME OVER");
+      gameLost();
+      removeEnemy();
+      clearInterval(timer);
+      return; // Exit the function early if the game is over
+    }
   }
 
   // start Game function
   function startGameOne() {
     if (!isPlaying) {
-      isPlaying = !isPlaying;
-      timer = setInterval(() => {
-        moveEnemy();
-      }, 800);
+      isPlaying = true;
+      timer = setInterval(moveEnemy, 800);
     }
+
     if (enemyRemoved.length === 18) {
+      gameWonLevelOne();
       enemy = [
         0, 1, 2, 3, 4, 5, 10, 11, 12, 13, 14, 15, 20, 21, 22, 23, 24, 25,
       ];
       enemyRemoved.length = 0;
-
       isPlaying = false;
-      gameWonLevelOne();
-    }
-    if (enemy.some((item) => item >= width * width - width)) {
-      console.log("GAME OVER");
-      gameLost();
-      removeEnemy();
-      clearInterval(timer);
+      clearInterval(timer); // Clear the timer when the game is won
     }
   }
 
   function startGameTwo() {
-    for (let i = 0; i < enemy.length; i++)
-      if (!isPlaying) {
-        isPlaying = !isPlaying;
-        timer = setInterval(() => {
-          moveEnemy();
-        }, 500);
-      }
+    if (!isPlaying) {
+      isPlaying = true;
+      timer = setInterval(moveEnemy, 500);
+    }
+
     if (enemyRemoved.length === 18) {
+      gameWonLevelTwo();
       enemy = [
         0, 1, 2, 3, 4, 5, 10, 11, 12, 13, 14, 15, 20, 21, 22, 23, 24, 25,
       ];
       enemyRemoved.length = 0;
-
       isPlaying = false;
-      gameWonLevelTwo();
-    }
-    if (enemy.some((item) => item >= width * width - width)) {
-      console.log("GAME OVER");
-      gameLost();
-      removeEnemy();
-      clearInterval(timer);
+      clearInterval(timer); // Clear the timer when the game is won
     }
   }
 
   function startGameThree() {
     if (!isPlaying) {
-      isPlaying = !isPlaying;
-      timer = setInterval(() => {
-        moveEnemy();
-      }, 250);
+      isPlaying = true;
+      timer = setInterval(moveEnemy, 250);
     }
+
     if (enemyRemoved.length === 18) {
+      gameWonLevelThree();
       enemy = [
         0, 1, 2, 3, 4, 5, 10, 11, 12, 13, 14, 15, 20, 21, 22, 23, 24, 25,
       ];
       enemyRemoved.length = 0;
-
       isPlaying = false;
-      gameWonLevelThree();
-    }
-    if (enemy.some((item) => item >= width * width - width)) {
-      console.log("GAME OVER");
-      gameLost();
-      removeEnemy();
-      clearInterval(timer);
+      clearInterval(timer); // Clear the timer when the game is won
     }
   }
 
@@ -271,6 +282,7 @@ function init() {
     scoreDisplayLoss.innerHTML = score;
     scoreDisplayWin.innerHTML = score;
   }
+
   function gameWonLevelTwo() {
     clearInterval(timer);
     if (!highScore || playerScore > highScore) {
@@ -330,16 +342,60 @@ function init() {
     window.location.reload();
   }
 
-  function playAudio() {
+  function choseReb() {
+    classPlayer = "falcon";
+    classLaserPlayer = "laser-blue";
+    classEnemyOne = "bomber-enemy";
     welcomePage.classList.add("hidden");
     gamePage.classList.remove("hidden");
     starWarsAudio.src = "../sounds/starwars.mp3";
     starWarsAudio.play();
     highScoreSetUp();
+    createGrid();
   }
 
+  function choseRep() {
+    classEnemyOne = "luke-enemy";
+    classPlayer = "star-destroyer";
+    classLaserPlayer = "laser-red";
+    welcomePage.classList.add("hidden");
+    gamePage.classList.remove("hidden");
+    starWarsAudio.src = "../sounds/starwars.mp3";
+    starWarsAudio.play();
+    highScoreSetUp();
+    createGrid();
+  }
+
+  function enableMute() {
+    audioMute.muted = true;
+    audioShootMute.muted = true;
+
+    buttonUnmute.classList.remove("hidden");
+    buttonMute.classList.add("hidden");
+  }
+
+  function disableMute() {
+    audioMute.muted = false;
+    audioShootMute.muted = false;
+    buttonUnmute.classList.add("hidden");
+    buttonMute.classList.remove("hidden");
+  }
+
+  buttonMute.addEventListener("click", enableMute);
+  buttonUnmute.addEventListener("click", disableMute);
   playButtom.addEventListener("click", playAgain);
-  solo.addEventListener("click", playAudio);
+
+  falcon.addEventListener("click", choseReb);
+  solo.addEventListener("click", choseReb);
+  chewy.addEventListener("click", choseReb);
+  luke.addEventListener("click", choseReb);
+
+  destroyer.addEventListener("click", choseRep);
+  phasma.addEventListener("click", choseRep);
+  vader.addEventListener("click", choseRep);
+  ren.addEventListener("click", choseRep);
+
+
   document.addEventListener("keydown", handleKeyDown);
   document.addEventListener("keydown", shoot);
   startButton.addEventListener("click", startGameOne);

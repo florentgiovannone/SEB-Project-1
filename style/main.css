@@ -7,6 +7,7 @@ body {
     margin: 0 auto;
     font-family: 'Star Wars',sans-serif;
     background-color: #000;
+    cursor: grab;
 }
 
 
@@ -37,8 +38,8 @@ h3{
 
 h4 {
     font-size: 30px;
-    margin: 10px
-        color: #FFE81F;
+    margin: 10px;
+    color: #FFE81F;
 }
 
 
@@ -210,6 +211,7 @@ span {
     flex-grow: 1;
     height: 10%;
     width: 10%;
+
 }
 
 #game-page button {
@@ -227,26 +229,59 @@ span {
     line-height: 30px;
 }
 
-.grid div.playerShip {
+.grid div.luke {
     background-image: url('../images/luke_ship.png');
     background-repeat: no-repeat;
     background-size: contain;
-    cursor: pointer;
+    cursor: grab;
 }
-
-.grid div.phasma {
-    background-image: url('../images/Phasma.png');
+.grid div.luke-enemy {
+    background-image: url('../images/luke_ship.png');
     background-repeat: no-repeat;
     background-size: contain;
-    cursor: pointer;
+    cursor: grab;
+    transform: rotate(180deg);
+    
+        
+}
+
+
+
+.grid div.falcon {
+    background-image: url("../images/falcon.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    cursor: grab;
+}
+.grid div.falcon-enemy {
+    background-image: url("../images/falcon.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    cursor: grab;
+    transform: rotate(180deg);
+}
+
+.grid div.bomber-enemy {
+    background-image: url('../images/bomber.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    cursor: grab;
     background-position: center;
 }
 
-.grid div.palp {
-    background-image: url('../images/palpatine.png');
+.grid div.deathstar-enemy {
+    background-image: url('../images/death_star.png');
     background-repeat: no-repeat;
     background-size: contain;
-    cursor: pointer;
+    cursor: grab;
+    background-position: center;
+}
+
+.grid div.star-destroyer {
+    background-image: url("../images/star-destroyer.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    cursor: grab;
     background-position: center;
 }
 
@@ -254,7 +289,7 @@ span {
     background-image: url('../images/vader.png');
     background-repeat: no-repeat;
     background-size: contain;
-    cursor: pointer;
+    cursor: grab;
     background-position: center;
 }
 
@@ -262,7 +297,7 @@ span {
     background-image: url('../images/ren.png');
     background-repeat: no-repeat;
     background-size: contain;
-    cursor: pointer;
+    cursor: grab;
     background-position: center;
 }
 
@@ -270,14 +305,14 @@ span {
     background-image: url('../images/chewy.png');
     background-repeat: no-repeat;
     background-size: contain;
-    cursor: pointer;
+    cursor: grab;
     background-position: center;
 }
 .grid div.boom {
     background-image: url('../images/boom.gif');
     background-repeat: no-repeat;
     background-size: contain;
-    cursor: pointer;
+    cursor: grab;
     background-position: center;
 }
 
@@ -285,7 +320,7 @@ span {
     background-image: url('../images/laser-red.png');
     background-repeat: no-repeat;
     background-size: contain;
-    cursor: pointer;
+    cursor: grab;
     background-position: center;
 }
 
@@ -293,9 +328,29 @@ span {
     background-image: url('../images/laser-blue.png');
     background-repeat: no-repeat;
     background-size: contain;
-    cursor: pointer;
+    cursor: grab;
     background-position: center;
 }
+
+#mute {
+    background-image: url('../images/mute.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    cursor: grab;
+    background-position: center;
+    margin: 50px;
+    }
+
+
+#unmute {
+    background-image: url('../images/unmute.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    cursor: grab;
+    background-position: center;
+    margin: 50px;
+    }
+
 
 /* game over styling */
 #top-part-game-over {
