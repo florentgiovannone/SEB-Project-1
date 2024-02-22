@@ -44,8 +44,10 @@ h4 {
 
 
 p {
+    font-size: 20px;
     color: #FFE81F;
     font-family: 'Star Wars', sans-serif;
+    text-align: center;
 }
 
 span {
@@ -65,47 +67,38 @@ span {
 #character-page {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: center;
+    margin: 0 auto;
 }
 
 #republic {
     display: flex;
     flex-direction: column;
-    margin-left: 100px;
+margin: 50px;
 }
 
 #republic img {
-    height: 300px;
-    width: 300px;
+    height: 275px;
+    width: 200px;
     border: 5px solid #FFE81F;
     border-radius: 50px;
-    padding: 50px;
+    padding: 20px;
     margin: 30px 0 0 0;
 }
 
 #rebelion {
     display: flex;
-    flex-direction: column;
-    justify-content: left;
-        margin-right: 100px;
+        flex-direction: column;
+margin: 50px;
 }
 
-#rebelion img {
-    height: 300px;
-    width: 300px;
-    border: 5px solid #FFE81F;
-    border-radius: 50px;
-    padding: 50px;
-    padding: 50px;
-    margin: 30px 0 0 0;
-}
-
-#deco img{
-    width: 500px;
-    margin: 50px;
-    border: 5px solid #FFE81F;
-    border-radius: 50px;
-    padding: 50px;
+#rebelion img { 
+    height: 275px;
+    width: 200px;
+        border: 5px solid #FFE81F;
+        border-radius: 50px;
+        padding: 20px;
+        margin: 30px 0 0 0;
 }
 
 #deco {
@@ -267,6 +260,7 @@ span {
     background-size: contain;
     cursor: grab;
     background-position: center;
+    
 }
 
 .grid div.deathstar-enemy {
@@ -285,6 +279,15 @@ span {
     background-position: center;
 }
 
+.grid div.star-destroyer-enemy {
+    background-image: url("../images/star-destroyer.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    cursor: grab;
+    background-position: center;
+        transform: rotate(180deg);
+}
+
 .grid div.vader {
     background-image: url('../images/vader.png');
     background-repeat: no-repeat;
@@ -301,12 +304,13 @@ span {
     background-position: center;
 }
 
-.grid div.chewy {
-    background-image: url('../images/chewy.png');
+.grid div.ghost {
+    background-image: url('../images/ghost.png');
     background-repeat: no-repeat;
     background-size: contain;
     cursor: grab;
     background-position: center;
+    transform: rotate(180deg);
 }
 .grid div.boom {
     background-image: url('../images/boom.gif');
@@ -365,14 +369,17 @@ span {
 #final-highscore {
     text-align: center;
     margin: 100px;
+    padding-bottom: 100px;
 }
 
 #final-highscore p{
     color: #fff;
+
 }
 
 #final-highscore span {
     color: #fff;
+
 }
 
 

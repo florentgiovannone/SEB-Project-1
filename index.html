@@ -31,25 +31,38 @@
         <div id="character-page">
           <div id="republic">
             <h2>The Republic</h2>
-            <img id="ren" src="./images/ren.png" alt="" />
-            <img id="phasma" src="./images/Phasma.png" alt="" />
-            <img id="vader" src="./images//vader.png" alt="" />
+
+            <img
+              class="name"
+              id="palpatine"
+              src="./images/palpatine.png"
+              alt=""
+            />
+            <img class="name" id="vader" src="./images//vader.png" alt="" />
+            <img class="name" id="ren" src="./images/ren.png" alt="" />
           </div>
           <div id="deco">
-            <h2>Pick your character</h2>
-            <img id="destroyer" src="./images/star_destroyer.png" alt="" />
-            <img id="falcon" src="./images/falcon_millenium.png" alt="" />
+            <h3>pick your character <br /><span></span></h3>
+            <h4 id="name"></h4>
+            <h3>how to play</h3>
+            <p>
+              to move your ship press <br />➡️ to go righth <br />or ⬅️ to go
+              left
+            </p>
+            <p>to shoot missiles press space bar</p>
+            <img id="gif" src="./images/ClN.gif" alt="" />
           </div>
           <div id="rebelion">
             <h2>The Rebelion</h2>
-            <img id="chewy" src="./images/chewy.png" alt="" />
+
             <img id="solo" src="./images/solo.png" alt="" />
+            <img id="chewy" src="./images/chewy.png" alt="" />
             <img id="luke" src="./images/luke.png" alt="" />
           </div>
         </div>
       </div>
-      <audio  id="audio" loop="loop"></audio>
-      <audio  id="shoot-audio" ></audio>
+      <audio id="loop" loop="loop"></audio>
+      <audio id="unloop" src=""></audio>
     </div>
     <div id="game-page" class="hidden">
       <div id="top-part-ingame">
@@ -80,47 +93,51 @@
         <div id="grid-wrapper">
           <div id="shooter"></div>
           <div class="grid"></div>
+                    <p id="message" class="hidden"></p>
         </div>
         <div>
           <button id="mute" alt="mute button"></button>
           <button id="unmute" class="hidden" alt="unmute button"></button>
         </div>
-    </div>
+      </div>
     </div>
     <div id="result-page" class="hidden">
       <div id="top-part-game-over">
-        <img
-          class="sw-logo"
-          src="./images/star_wars.png"
-          alt="star wars logo"
-        />
-        <h1>Game over!!!</h1>
-        <img
-          class="sw-logo"
-          src="./images/star_wars.png"
-          alt="star wars logo"
-        />
+        <img class="sw-logo" src="./images/Ep1r.gif" alt="star wars logo" />
       </div>
       <div id="win">
         <h2>you won</h2>
         <p>your score</p>
-        <p class="score-display-win">000</p>
-        <h4>May the force be with you!</h4>
-        <img src="./images/won.gif" alt="" />
+        <p class="score-display-win"></p>
+        <div id="repwon">
+          <h4>the galaxy is finally your!</h4>
+          <img src="./images/won.gif" alt="" />
+        </div>
+        <div id="rebwon">
+          <h4>the force was with you!</h4>
+          <img src="./images/MM2o.gif" alt="" />
+        </div>
       </div>
       <div id="loss">
         <h2>you lost</h2>
         <p>your score</p>
-        <p class="score-display-loss">000</p>
-        <h4>i find your lack of faith disturbing...</h4>
-        <img src="./images/loss.gif" alt="" />
+        <p class="score-display-loss"></p>
+        <div id="replost">
+          <h4>i find your lack of faith disturbing</h4>
+          <img src="./images/loss.gif" alt="" />
+        </div>
+        <div id="reblost">
+          <h4>the galaxy has no more hope...</h4>
+          <img src="./images/UOr.gif" alt="" />
+        </div>
       </div>
       <div id="reset-button">
         <button>Play again</button>
       </div>
       <div id="final-highscore">
         <h3>High Score</h3>
-        <p id="highscore-final"><span>000</span></p>
+        <p><span id="name-final"></span></p>
+        <p><span id="highscore-final">000</span></p>
         <p></p>
       </div>
     </div>
