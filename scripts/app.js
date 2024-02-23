@@ -1,14 +1,12 @@
 function init() {
   const startButton = document.querySelector("#start-game");
-
-  const playButtom = document.querySelector("#reset-button");
+  const playButton = document.querySelector("#reset-button");
   const grid = document.querySelector(".grid");
 
+  // pages content contant
   const welcomePage = document.getElementById("welcome-page");
   const gamePage = document.getElementById("game-page");
   const resultPage = document.getElementById("result-page");
-  const message = document.getElementById("message");
-
   const winPage = document.getElementById("win");
   const lostPage = document.getElementById("loss");
   const winReb = document.getElementById("rebwon");
@@ -16,6 +14,9 @@ function init() {
   const winRep = document.getElementById("repwon");
   const lostRep = document.getElementById("replost");
 
+  const message = document.getElementById("message");
+
+  // character variable
   const solo = document.getElementById("solo");
   const chewy = document.getElementById("chewy");
   const luke = document.getElementById("luke");
@@ -23,20 +24,21 @@ function init() {
   const vader = document.getElementById("vader");
   const palpatine = document.getElementById("palpatine");
 
+  // Audio variable
   const unloopedAudio = document.getElementById("unloop");
   const loopedAudio = document.getElementById("loop");
   const buttonMute = document.getElementById("mute");
   const buttonUnmute = document.getElementById("unmute");
 
+  // Level variable
   const levelTwo = document.getElementById("level-two");
   const levelThree = document.getElementById("level-three");
-  const bossLevel = document.getElementById("boss-level");
   const displayName = document.getElementById("name");
 
+  // class adapt variable
   let classPlayer = "";
   let classLaserPlayer = "";
   let classLaserEnemy = "";
-
   let classEnemyOne = "";
   let classEnemyTwo = "";
   let classEnemyThree = "";
@@ -72,6 +74,7 @@ function init() {
   const cellsCount = width * width; //The number of cells in the grid(ten rows of ten)
   const cells = []; //how we store and reference the rows
 
+  // function to create the grid
   function createGrid() {
     for (let i = 0; i < cellsCount; i++) {
       const cell = document.createElement("div");
@@ -109,10 +112,8 @@ function init() {
 
         setTimeout(() => cells[currentLaserId].classList.remove("boom"), 100);
         clearInterval(laserId);
-  
-        
-        const oneEnemyRemoved = enemy.indexOf(currentLaserId);
 
+        const oneEnemyRemoved = enemy.indexOf(currentLaserId);
         enemyRemoved.push(oneEnemyRemoved);
         score += 100;
         scoreDisplay.innerHTML = score;
@@ -156,7 +157,7 @@ function init() {
     addPlayerShip(playerShipCurrentPosition);
   }
 
-  // Adding clas to enemy to appear
+  // Adding class to enemy to appear
   function displayEnemy() {
     for (let i = 0; i < enemy.length; i++) {
       if (!enemyRemoved.includes(i)) {
@@ -165,13 +166,14 @@ function init() {
     }
   }
 
-  // rmoving clas to enemy to disapear and move
+  // removing clas to enemy to disapear and move
   function removeEnemy() {
     for (let i = 0; i < enemy.length; i++) {
       cells[enemy[i]].classList.remove(classEnemyOne);
     }
   }
 
+  // moving the enemies around
   function enemyMouvement() {
     const leftBorder = enemy[0] % width === 0;
     const rightBorder = enemy[enemy.length - 1] % width === width - 1;
@@ -197,7 +199,7 @@ function init() {
     }
   }
 
-  // enemy mouvement
+  // enemy mouvement sync
   function moveEnemy() {
     removeEnemy();
     enemyMouvement();
@@ -205,6 +207,7 @@ function init() {
     checkIfLost();
   }
 
+  // check if the player has lost
   function checkIfLost() {
     // Check if any enemy has reached the bottom of the grid
     if (!lives) {
@@ -275,7 +278,7 @@ function init() {
       clearInterval(timerShoot); // Clear the timer when the game is won
     }
   }
-
+  // level two start
   function startGameTwo() {
     classEnemyOne = classEnemyTwo;
     message.classList.add("hidden");
@@ -296,7 +299,7 @@ function init() {
       clearInterval(timerShoot); // Clear the timerShoot when the game is won
     }
   }
-
+  // level 3 start
   function startGameThree() {
     classEnemyOne = classEnemyThree;
     message.classList.add("hidden");
@@ -317,7 +320,7 @@ function init() {
       clearInterval(timerShoot); // Clear the timer when the game is won
     }
   }
-
+  // events when level one won
   function gameWonLevelOne() {
     startButton.classList.add("hidden");
     levelTwo.classList.remove("hidden");
@@ -332,7 +335,7 @@ function init() {
       highScoreSetUp();
     }
   }
-
+  // events when level two won
   function gameWonLevelTwo() {
     startButton.classList.add("hidden");
     levelTwo.classList.add("hidden");
@@ -348,7 +351,7 @@ function init() {
       highScoreSetUp();
     }
   }
-
+  // events when level three won
   function gameWonLevelThree() {
     gamePage.classList.add("hidden");
     resultPage.classList.remove("hidden");
@@ -366,7 +369,7 @@ function init() {
       highScoreSetUp();
     }
   }
-
+  // // events when lost
   function gameLost() {
     clearInterval(timer);
     clearInterval(timerShoot);
@@ -385,7 +388,7 @@ function init() {
     loopedAudio.src = "../sounds/levelthree.mp3";
     loopedAudio.play();
   }
-
+  // highscore setup
   function highScoreSetUp() {
     const highScoreDisplay = document.querySelector("#highscore-display");
     const highScoreDisplayFinal = document.querySelector("#highscore-final");
@@ -396,13 +399,13 @@ function init() {
     highScoreDisplayFinal.innerHTML = highScoreStorage;
     highScoreDisplayFinalName.innerHTML = highScoreStorageName;
   }
-
+  // playagain button function
   function playAgain() {
     welcomePage.classList.remove("hidden");
     resultPage.classList.add("hidden");
     window.location.reload();
   }
-
+  // chnage cosmetic if player chose rebelion
   function choseReb() {
     classPlayer = "falcon";
     classLaserPlayer = "laser-blue";
@@ -419,7 +422,7 @@ function init() {
     highScoreSetUp();
     createGrid();
   }
-
+  // chnage cosmetic if player chose republic
   function choseRep() {
     classEnemyOne = "luke-enemy";
     classEnemyTwo = "ghost";
@@ -438,21 +441,21 @@ function init() {
     highScoreSetUp();
     createGrid();
   }
-
+  // mute button function
   function enableMute() {
     loopedAudio.muted = true;
     unloopedAudio.muted = true;
     buttonUnmute.classList.remove("hidden");
     buttonMute.classList.add("hidden");
   }
-
+  // unmute button function
   function disableMute() {
     loopedAudio.muted = false;
     unloopedAudio.muted = false;
     buttonUnmute.classList.add("hidden");
     buttonMute.classList.remove("hidden");
   }
-
+  // function when mouse enter the character page to play a sound and show character name
   function enter(event) {
     if (event.target.id === "luke") {
       displayName.innerHTML = "luke";
@@ -486,7 +489,7 @@ function init() {
       unloopedAudio.play();
     }
   }
-
+  // function when mouse leave the character page to stop playing a sound and stop showing character name
   function leave(event) {
     if (event.target.id === "luke") {
       displayName.innerHTML = "";
@@ -514,26 +517,19 @@ function init() {
       unloopedAudio.pause();
     }
   }
-  // function playAudio(event) {
-  //   console.log(event.target.id);
-  //   // I need to set a src for the audio element. [Hopefully] knowing
-  //   // which button was clicked, will help me identify which file to use
-  //   audio.src = `./sounds/${event.target.id}.mp3`;
-  //   audio.play();
-  // }
-  // playAudio()
-
+// muter / unmute listener
   buttonMute.addEventListener("click", enableMute);
   buttonUnmute.addEventListener("click", disableMute);
-  playButtom.addEventListener("click", playAgain);
 
+// listener to chose character and adapt cosmetics
   solo.addEventListener("click", choseReb);
   chewy.addEventListener("click", choseReb);
   luke.addEventListener("click", choseReb);
   ren.addEventListener("click", choseRep);
   palpatine.addEventListener("click", choseRep);
+  vader.addEventListener("click", choseRep);
 
-
+  // listener to trigger function to enter and leave each character
   luke.addEventListener("mouseenter", enter);
   luke.addEventListener("mouseleave", leave);
   solo.addEventListener("mouseenter", enter);
@@ -547,12 +543,12 @@ function init() {
   palpatine.addEventListener("mouseenter", enter);
   palpatine.addEventListener("mouseleave", leave);
 
-  palpatine.addEventListener("click", choseRep);
-  vader.addEventListener("click", choseRep);
-  ren.addEventListener("click", choseRep);
-
+  // keydown listener
   document.addEventListener("keydown", handleKeyDown);
   document.addEventListener("keydown", shoot);
+
+  // listener to start games
+    playButton.addEventListener("click", playAgain);
   startButton.addEventListener("click", startGameOne);
   levelTwo.addEventListener("click", startGameTwo);
   levelThree.addEventListener("click", startGameThree);
