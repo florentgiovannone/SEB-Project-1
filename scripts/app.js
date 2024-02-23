@@ -359,7 +359,7 @@ function init() {
     scoreDisplay.innerHTML = score;
     scoreDisplayLoss.innerHTML = score;
     scoreDisplayWin.innerHTML = score;
-    loopedAudio.src = "../sounds/levelthree.mp3";
+    loopedAudio.src = "./sounds/levelthree.mp3";
     loopedAudio.play();
     const highScore = localStorage.getItem("high-score");
     if (!highScore || score > highScore) {
@@ -385,7 +385,7 @@ function init() {
     scoreDisplay.innerHTML = score;
     scoreDisplayLoss.innerHTML = score;
     scoreDisplayWin.innerHTML = score;
-    loopedAudio.src = "../sounds/levelthree.mp3";
+    loopedAudio.src = "./sounds/levelthree.mp3";
     loopedAudio.play();
   }
   // highscore setup
@@ -415,7 +415,7 @@ function init() {
     classEnemyThree = "deathstar-enemy";
     welcomePage.classList.add("hidden");
     gamePage.classList.remove("hidden");
-    loopedAudio.src = "../sounds/levelone.mp3";
+    loopedAudio.src = "./sounds/levelone.mp3";
     loopedAudio.play();
     winRep.classList.add("hidden");
     lostRep.classList.add("hidden");
@@ -431,7 +431,7 @@ function init() {
     classPlayer = "star-destroyer";
     classLaserPlayer = "laser-red";
     classLaserEnemy = "laser-blue";
-    loopedAudio.src = "../sounds/leveltwo.mp3";
+    loopedAudio.src = "./sounds/leveltwo.mp3";
     loopedAudio.play();
     welcomePage.classList.add("hidden");
     gamePage.classList.remove("hidden");

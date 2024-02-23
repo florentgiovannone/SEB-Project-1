@@ -177,7 +177,7 @@ margin: 50px;
     display: flex;
     flex-direction: row;
     justify-content:space-evenly;
-    background-image: url("../images/IDIm.gif");
+    background-image: url("./images/IDIm.gif");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
