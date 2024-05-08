@@ -3,7 +3,7 @@
 ## Summary
 
   - [Description](#description)
-  - [Deployement](#deployement)
+  - [Deployment](#deployment)
   - [Technologies](#technologies)
   - [Timeframe & working team ](#timeframe--working-team)
   - [Screenshots](#screenshots)
@@ -28,7 +28,7 @@
 This project is a web-based rendition of the classic space invader game. It utilizes HTML, CSS, and JavaScript to create an interactive gaming experience where the player controls the player ship.
 [Play here!](https://starwarsinvaqder.netlify.app/)
 
-## Deployement
+## Deployment
 We have use Netify to deploy our app
 
 1. Clone or download the project to your local machine.
