@@ -166,7 +166,7 @@ function init() {
     }
   }
 
-  // removing clas to enemy to disapear and move
+  // removing class to enemy to disapear and move
   function removeEnemy() {
     for (let i = 0; i < enemy.length; i++) {
       cells[enemy[i]].classList.remove(classEnemyOne);
