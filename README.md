@@ -1,68 +1,71 @@
-# Star Ward Invader
+# Star Wars Invader
 
 ## Summary
 
-  - [Description](#description)
-  - [Deployment](#deployment)
-  - [Technologies](#technologies)
-  - [Timeframe & working team ](#timeframe--working-team)
-  - [Screenshots](#screenshots)
-    - [Welcome screen](#welcome-screen)
-    - [Gameplay screen ](#gameplay-screen )
-    - [Game over screen ](#game-over-screen )
-  - [Planning](#planning)
-    - [index.html](#indexhtml)
-    - [styles/main.css](#stylesmaincss)
-    - [scripts/app.js](#scriptsappjs)
-  - [Build code process](#build-code-process)
-    - [Player shooting and movement](#player-shooting-and-movement)
-    - [Enemy moving and shooting](#enemy-moving-and-shooting)
-  - [Wins](#wins)
-  - [Key learning and takeaway](#key-learning-and-takeaway)
-  - [Bugs](#bugs)
-  - [Future improvements](#future-improvements)
-
+- [Description](#description)
+- [Deployment](#deployment)
+- [Technologies](#technologies)
+- [Timeframe & Working Team](#timeframe--working-team)
+- [Screenshots](#screenshots)
+  - [Welcome Screen](#welcome-screen)
+  - [Gameplay Screen](#gameplay-screen)
+  - [Game Over Screen](#game-over-screen)
+- [Planning](#planning)
+  - [index.html](#indexhtml)
+  - [styles/main.css](#stylesmaincss)
+  - [scripts/app.js](#scriptsappjs)
+- [Build Code Process](#build-code-process)
+  - [Player Shooting and Movement](#player-shooting-and-movement)
+  - [Enemy Moving and Shooting](#enemy-moving-and-shooting)
+- [Wins](#wins)
+- [Challenges](#challenges)
+- [Key Learning and Takeaway](#key-learning-and-takeaway)
+- [Bugs](#bugs)
+- [Future Improvements](#future-improvements)
 
 ## Description
 
-This project is a web-based rendition of the classic space invader game. It utilizes HTML, CSS, and JavaScript to create an interactive gaming experience where the player controls the player ship.
-[Play here!](https://starwarsinvaqder.netlify.app/)
+### What is Space Invader?
+Space Invaders: Defend Earth against an alien invasion! Control your spacecraft as waves of extraterrestrial does descend from above, unleashing relentless firepower. Blast through the ranks of invaders, dodging their attacks, and strive to be the hero humanity needs. With fast-paced action and strategic maneuvers, can you save the planet from the impending threat?
+
+### What is My Twist on It?
+I recreated a Space Invader game using Star Wars as a theme. The user can choose a character which will then update the kind of music, ships, and assets.
+
+This project is a web-based rendition of the classic Space Invader game. It utilizes HTML, CSS, and JavaScript to create an interactive gaming experience where the player controls the player ship. [Play here!](https://starwarsinvaqder.netlify.app/)
 
 ## Deployment
-We have use Netify to deploy our app
+We have used Netlify to deploy our app.
 
 1. Clone or download the project to your local machine.
-2. Open the index.html file in a web browser to start the game.
+2. Open the `index.html` file in a web browser to start the game.
 
 ## Technologies
 - HTML
-- CSS 
+- CSS
 - Vanilla JavaScript
 
-## Timeframe & working team 
-This was our first project and it was a solo project. It lastest a total of 5 days. 
-I also pseudo coded each feature prior before starting  coding 
+## Timeframe & Working Team
+This was our first project and it was a solo project. It lasted a total of 5 days. I also pseudo-coded each feature prior to starting coding.
 
-We had a daily stand up at the begining of everydays and I was updating my task list few times a day.
+We had a daily stand-up at the beginning of every day, and I was updating my task list a few times a day.
 
 ## Screenshots
-### Welcome screen
+### Welcome Screen
 First page: This gives the user the choice of picking a character to start the game. When hovering over each character, the name of the character will be shown on the screen and a 'catch phrase' will be heard.
 ![Welcome Screenshot](./images/welcome%20screen.png)
 
-Gameplay page: the user will see the ship and be able to move it around. When the user press start, the enemy ships will spawn. Depending on the character chosen, the user will see different ships. Each level, the user will hear different music and see different ships.
-### Gameplay screen 
+### Gameplay Screen
+The user will see the ship and be able to move it around. When the user presses start, the enemy ships will spawn. Depending on the character chosen, the user will see different ships. Each level, the user will hear different music and see different ships.
 ![Gameplay Screenshot](./images/game%20screen.png)
 
-When the game finishes, the user will see a GIF and a leaderboard that is linked to the userr local storage. There are four different endings depending on whom the user choose and whether the user win or lose.
-### Game over screen 
+### Game Over Screen
+When the game finishes, the user will see a GIF and a leaderboard that is linked to the user's local storage. There are four different endings depending on whom the user chooses and whether the user wins or loses.
 ![Ending Screenshot](./images/ending%20screen.png)
 
-
 ## Planning
-To setup this project I started by a wireframing of the app and a day by day task set with the number of hours to be dedicated on the development of each features. 
+To set up this project, I started by wireframing the app and creating a day-by-day task set with the number of hours to be dedicated to the development of each feature.
 
-This allowed me to challenge myself and to ensure a MVP was ready by the end of the project. 
+This allowed me to challenge myself and to ensure an MVP was ready by the end of the project.
 
 ```plaintext
 star wars invader
@@ -70,32 +73,28 @@ star wars invader
 ├── index.html # Main HTML file for the game.
 │
 ├── styles
-│       └── main.css # CSS styles for the game.
+│   └── main.css # CSS styles for the game.
 │
 └── scripts
-│        └──app.js # JavaScript logic for the game functionality.
-│
-└── images
-│
-│
-└── sounds
+    └── app.js # JavaScript logic for the game functionality.
 
 ```
 
 ### index.html
 
-Contains the structure of the game, including the game grid current highscore from the local memory score display and lives display.
+Contains the structure of the game, including the game grid, current high score from the local memory score display, and lives display.
 
 ### styles/main.css
 
-Defines the styling for the game, including the layout of the game grid, player ships, enemies ships derpending on who you are choosing. It also includes styles for the score display and instructions.
+Defines the styling for the game, including the layout of the game grid, player ships, enemy ships depending on who you are choosing. It also includes styles for the score display and instructions.
 
 ### scripts/app.js
 
-Contains the JavaScript logic for the game's functionality. This includes moving of the ships and enemies, shooting at and from the enemies and updating the score and lives.
+Contains the JavaScript logic for the game's functionality. This includes moving the ships and enemies, shooting at and from the enemies, and updating the score and lives.
 
 
 ## Build code process
+
 Step 1:
 I started by setting up the basics of HTML and CSS to establish a style identity.
 
@@ -116,7 +115,14 @@ Finally, I addressed the different endings depending on the outcome of the game.
 
 
 ### Player shooting and movement 
-```jsx 
+
+
+
+```javascript
+This snippet function gets the player to move and shoot depending on which key code is actioned by the player. The way the player moves is by removing and adding classes going right or left. 
+
+For shooting, I used a similar approach; however, this time I used the setInterval built-in function. The laser will stop if the laser touched an enemy or if the laser is at the top of the screen. 
+The shooting is matched with sound when shooting and when an enemy is killed.  
   // Player shoot function
   function shoot(event) {
     let laserId;
@@ -178,11 +184,15 @@ Finally, I addressed the different endings depending on the outcome of the game.
 
     addPlayerShip(playerShipCurrentPosition);
   }
-  ```
+```
+
 
 
 ### Enemy moving and shooting
-```jsx
+Enemy shooting is very similar to player shooting, unless this time enemies are chosen randomly from the array of enemies.
+
+Enemy movement was slightly more challenging, as at first the enemies were just going through walls. To bypass this issue, I created a function checking if the last enemy has reached the wall, and if the enemy is moving to the right or left. If both of these conditions are met, the enemy will then go down once and then the opposite way.
+```javascript
  // Adding class to enemy to appear
   function displayEnemy() {
     for (let i = 0; i < enemy.length; i++) {
@@ -192,7 +202,7 @@ Finally, I addressed the different endings depending on the outcome of the game.
     }
   }
 
-  // removing class to enemy to disapear and move
+  // removing class to enemy to disappear and move
   function removeEnemy() {
     for (let i = 0; i < enemy.length; i++) {
       cells[enemy[i]].classList.remove(classEnemyOne);
@@ -200,23 +210,23 @@ Finally, I addressed the different endings depending on the outcome of the game.
   }
 
   // moving the enemies around
-  function enemyMouvement() {
+  function enemyMovement() {
     const leftBorder = enemy[0] % width === 0;
     const rightBorder = enemy[enemy.length - 1] % width === width - 1;
 
-    if (rightBorder && isGoingRigth) {
+    if (rightBorder && isGoingRight) {
       for (let i = 0; i < enemy.length; i++) {
         enemy[i] += width + 1;
         enemyDirection = -1;
-        isGoingRigth = false;
+        isGoingRight = false;
       }
     }
 
-    if (leftBorder && !isGoingRigth) {
+    if (leftBorder && !isGoingRight) {
       for (let i = 0; i < enemy.length; i++) {
         enemy[i] += width - 1;
         enemyDirection = 1;
-        isGoingRigth = true;
+        isGoingRight = true;
       }
     }
 
@@ -225,10 +235,10 @@ Finally, I addressed the different endings depending on the outcome of the game.
     }
   }
 
-  // enemy mouvement sync
+  // enemy movement sync
   function moveEnemy() {
     removeEnemy();
-    enemyMouvement();
+    enemyMovement();
     displayEnemy();
     checkIfLost();
   }
@@ -277,19 +287,24 @@ The biggest achievement for me in this project was getting the enemy to move dow
 
 After completing this project, I feel much more confident in coding JavaScript and manipulating what needs to be seen by the user at a given time.
 
-## Key learning and takeaway
-If I would have to make this project again, I would prioritise a lot more time on the gameplay itself first and look at styling later during the project 
+## Challenges
+During this project, the main challenges were all linked to the enemies.
 
+1. Enemy Movement: As a true space invader, enemies were supposed to go right or left until one enemy reached the wall. I struggled at first, but then read a lot and came across a good solution that tracked the last movement and, depending on the location of the enemy, the whole pack would go down and then the other way.
+
+2. Killed Enemy: Removing the enemies killed from the array was hard. I couldn't manage to get the array sliced and remove the enemies. Instead, I copied the killed enemies into a new array. This created a bug (still existing) that even the killed enemies are shooting.
+
+## Key Learning and Takeaway
+If I were to make this project again, I would prioritize a lot more time on the gameplay itself first and look at styling later during the project.
 
 ## Bugs
 - Sometimes, the enemies keep shooting even after the player has cleared the screen. Press the start button again, and you will advance to the next level.
 
--The issue where enemies continue shooting after being shot is caused by the fact that the killed enemies are copied into a new array called enemyRemoved rather than being sliced and placed into this array.
+- The issue where enemies continue shooting after being shot is caused by the fact that the killed enemies are copied into a new array called `enemyRemoved` rather than being sliced and placed into this array.
 
-## Future improvements
+## Future Improvements
+I would love to implement the below improvements:
 
--There are four different endings: one loss and one win for each side, each with a different GIF and wording for each situation.
-
--Each character has a dedicated sound when hovered over.
-
--The ships (player and enemies) and lasers have different colors depending on whom you choose.
+- Have more factions and more levels to make the game harder to play.
+- Implement a global leaderboard so players from across the world can compare with each other.
+- Fix the bugs.  
