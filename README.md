@@ -118,11 +118,12 @@ Finally, I addressed the different endings depending on the outcome of the game.
 
 
 
-```javascript
+
 This snippet function gets the player to move and shoot depending on which key code is actioned by the player. The way the player moves is by removing and adding classes going right or left. 
 
 For shooting, I used a similar approach; however, this time I used the setInterval built-in function. The laser will stop if the laser touched an enemy or if the laser is at the top of the screen. 
 The shooting is matched with sound when shooting and when an enemy is killed.  
+```javascript
   // Player shoot function
   function shoot(event) {
     let laserId;
